@@ -25,6 +25,7 @@ def main():
         return st.error("Dataframe vacio error en buscqueda de la db")
     st.write("### Tabla  de datos de casos de muerte por enfermedad")
     st.write("- pagina: https://www.kaggle.com/datasets/iamsouravbanerjee/cause-of-deaths-around-the-world")
+    st.write(f"Filas: {datos.shape[0]} , Columnas: {datos.shape[1]}")
     st.write(datos)
 
     menu_tabs(data=datos)

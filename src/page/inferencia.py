@@ -112,9 +112,10 @@ def calHipotesis(df: DataFrame, enferm: str):
     # 3. Prueba de hipótesis
     #    ¿La media es mayor que mu0?
     # -----------------------------
-    valor_ref: str | None = st.text_input("Valor de media de hipotesis", placeholder="2500")
+    mu0 =  1500
+    valor_ref: str | None = st.text_input("Valor de media de hipotesis", placeholder=f"{mu0}")
     handle_click = st.button("nuevo valor")
-    mu0 =  2500
+
 
     if handle_click:
         if valor_ref != None:
@@ -142,7 +143,7 @@ def calHipotesis(df: DataFrame, enferm: str):
 **Resultados (t de Student, una muestra)**
 
 - Estadístico t = **{t_stat:.3f}**
-- Valor p (una cola) = **{p_val:.4f}**
+- Valor p  = **{p_val:.4f}**
 - Nivel de significancia α = **{alpha:.2f}**
 """)
 
@@ -156,10 +157,11 @@ def calHipotesis(df: DataFrame, enferm: str):
     else:
         st.error(
             f"Como p = {p_val:.4f} ≥ α = {alpha:.2f}, **no rechazamos H₀**.\n\n"
-            f"Los datos **no aportan evidencia suficiente** para afirmar que la media anual "
-            f"de muertes por {enferm} sea mayor que {mu0:.0f}. "
-            f"Aunque la media muestral es {media:.2f}"
-
+            f"El resultado **no es estadísticamente significativo**, por lo que "
+            f"**no hay evidencia suficiente** para afirmar que la media anual de muertes "
+            f"por {enferm} sea mayor que {mu0:.0f}. "
+            f"La media muestral observada es {media:.2f}, valor que puede explicarse "
+            f"por la variabilidad propia de la muestra."
         )
 
 
@@ -167,13 +169,19 @@ def muestreo(df: DataFrame, enferm: str):
     x = df[enferm].dropna()
      # 4. Muestreo y diferencias
     # ==========================
-    st.subheader("Muestreo y comparación de medias")
 
+
+    st.subheader("Muestreo y comparación de medias")
+    valor_muestr = st.number_input("Elige el tamaño de muestra", value=10)
+  
     # convertimos a array NumPy para usar choice sin líos
     valores = x.to_numpy(dtype=float)
 
     # tamaño de cada muestra (puedes cambiar 8 por 10, 12, etc.)
-    tam_muestra = 8
+    tam_muestra = valor_muestr
+
+
+     
 
     # dos muestras aleatorias del MISMO conjunto de datos
     muestra1 = np.random.choice(valores, size=tam_muestra, replace=True)
