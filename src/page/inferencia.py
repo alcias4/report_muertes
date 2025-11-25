@@ -13,9 +13,6 @@ def pageInferenecia(df: DataFrame, enferm: str):
 
     # 2. Estadísticos descriptivos básicos
     media = x.mean() # type: ignore
-    desviacion = np.std(x, ddof=1)
-    print("Media anual de muertes por", enferm, ":", media)
-    print("Desviación estándar:", desviacion)
 
     # 3. Intervalo de confianza 95% para la media
     ic_low, ic_high = stats.t.interval(

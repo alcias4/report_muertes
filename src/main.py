@@ -6,7 +6,16 @@ from page.menu import menu_tabs
 
 PATH_DB = "./db/datos.csv"
 
+
+
+
+
+
 def main():
+    st.set_page_config(
+        page_title="Proyecto Reporte",
+        page_icon="🧪"
+    )
     st.title("Trabajo final")
 
 
@@ -21,6 +30,11 @@ def main():
     menu_tabs(data=datos)
 
 
+    # st.write("github:https://github.com/alcias4/report_muertes")
 
 if __name__ == "__main__":
     main()
+
+
+
+
