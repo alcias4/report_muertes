@@ -30,6 +30,12 @@ def menu_tabs(data: DataFrame):
 
     nav_1, nav_2 , nav_3, nav_4=  st.tabs(["Descriptiva", "Inferencia" ,"Mapa global", "Herramintas"])
 
+
+    estado = False
+
+
+
+
     with nav_1:
         descritve_info(data_fil=data_filtrada_enfer, enfermeda=res_enfermedad, pais=res_pais)
 

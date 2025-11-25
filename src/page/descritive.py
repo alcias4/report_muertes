@@ -7,7 +7,9 @@ from plotly.graph_objects import Figure # type: ignore
 def descritve_info(data_fil:DataFrame, enfermeda: str, pais: str):
 
 
-    
+            
+        
+
     fig: Figure =  px.line(data_fil, x="Año", y=enfermeda, title=f"Cantidad de muertos por {enfermeda} en {pais}") # type: ignore
 
 
@@ -28,8 +30,10 @@ def descritve_info(data_fil:DataFrame, enfermeda: str, pais: str):
         "Varianza": varianza_muerto
     }, index=["Estadísticas"])
 
-    st.write(f"### Tabla descriptiva:")
+    st.write(f"### Estadísticas Básicas")
     st.write(tabla_descritiva)
+
+   
 
 
 
